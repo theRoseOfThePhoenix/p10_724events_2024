@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable no-return-assign */
 import Button from "../../components/Button";
 import Logo from "../../components/Logo";
@@ -9,6 +10,7 @@ const Menu = () => (
     <Logo />
     <ul>
       <li>
+        {/* ajout de l'ancre */}
         <a href="#nos-services">Nos services</a>
       </li>
       <li>
@@ -18,7 +20,10 @@ const Menu = () => (
         <a href="#notre-equipe">Notre équipe</a>
       </li>
     </ul>
-    <Button title="contact" onClick={() => (window.document.location.hash = "#contact")}>
+    <Button
+      title="contact"
+      onClick={() => (window.document.location.hash = "#contact")}
+    >
       Contact
     </Button>
   </nav>

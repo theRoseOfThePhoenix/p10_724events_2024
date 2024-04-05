@@ -1,10 +1,11 @@
+// @ts-nocheck
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState } from "react";
 import PropTypes from "prop-types";
 
 import "./style.scss";
-
+// composent select qui permet de selectionner les options dans la galery
 const Select = ({
   selection,
   onChange,
@@ -16,9 +17,11 @@ const Select = ({
   const [value, setValue] = useState();
   const [collapsed, setCollapsed] = useState(true);
   const changeValue = (newValue) => {
-    onChange();
+    onChange(newValue); // onchange permet de changer la valeur du type selectionner donc j'ai ajouté l'argument newValue en paramètre
     setValue(newValue);
-    setCollapsed(newValue);
+    setCollapsed(!collapsed);
+    // changement argument newValue en !collapsed correspondant bien au state,
+    // Permet de fermer et ouvrir le menu déroulant de select correctement
   };
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">
@@ -88,7 +91,7 @@ Select.propTypes = {
   titleEmpty: PropTypes.bool,
   label: PropTypes.string,
   type: PropTypes.string,
-}
+};
 
 Select.defaultProps = {
   onChange: () => null,
@@ -96,6 +99,6 @@ Select.defaultProps = {
   label: "",
   type: "normal",
   name: "select",
-}
+};
 
 export default Select;

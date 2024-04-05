@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState } from "react";
 import EventCard from "../../components/EventCard";
 import Select from "../../components/Select";
@@ -10,22 +11,27 @@ import "./style.css";
 const PER_PAGE = 9;
 
 const EventList = () => {
+  // problème au niveau des event liste
   const { data, error } = useData();
   const [type, setType] = useState();
   const [currentPage, setCurrentPage] = useState(1);
+
+  // si le type n'est pas trouvé renvoi tous les events sinon tu renvoie les events qui correspont au type selectionné
   const filteredEvents = (
     (!type
       ? data?.events
-      : data?.events) || []
-  ).filter((event, index) => {
-    if (
-      (currentPage - 1) * PER_PAGE <= index &&
-      PER_PAGE * currentPage > index
-    ) {
-      return true;
-    }
-    return false;
-  });
+      : data?.events.filter((events) => events.type === type)) || []
+  )
+    // Modification du filtre avec en plus modification dans Select (bon argument dans fonction onChange)
+    .filter((event, index) => {
+      if (
+        (currentPage - 1) * PER_PAGE <= index &&
+        PER_PAGE * currentPage > index
+      ) {
+        return true;
+      }
+      return false;
+    });
   const changeType = (evtType) => {
     setCurrentPage(1);
     setType(evtType);
@@ -38,8 +44,10 @@ const EventList = () => {
       {data === null ? (
         "loading"
       ) : (
+        // select a verifier
         <>
           <h3 className="SelectTitle">Catégories</h3>
+
           <Select
             selection={Array.from(typeList)}
             onChange={(value) => (value ? changeType(value) : changeType(null))}
