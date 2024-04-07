@@ -9,8 +9,7 @@ const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
-    // changement du signe < en > pour ordre décdroisant
-    new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
+    new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
   );
   const nextCard = () => {
     // ajout d'une condition if pour vérifier que byDateDesc n'est pas undefined
@@ -28,7 +27,7 @@ const Slider = () => {
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        // ajout de la clé unique dans l'espace vide pour la div <>
+        // ajout key unique dans l'espace vide pour la div <>
         <div key={event.title}>
           <div
             className={`SlideCard SlideCard--${
@@ -59,7 +58,7 @@ const Slider = () => {
               ))}
             </div>
           </div>
-        </div> // fermeture de la nouvelle div
+        </div> // fermeture de la nouvelle div par rapport a la key
       ))}
     </div>
   );

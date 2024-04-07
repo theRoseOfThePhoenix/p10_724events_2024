@@ -17,21 +17,21 @@ const EventList = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   // si le type n'est pas trouvé renvoi tous les events sinon tu renvoie les events qui correspont au type selectionné
+  // Modification du filtre avec en plus modification dans Select (bon argument dans fonction onChange)
+
   const filteredEvents = (
     (!type
       ? data?.events
       : data?.events.filter((events) => events.type === type)) || []
-  )
-    // Modification du filtre avec en plus modification dans Select (bon argument dans fonction onChange)
-    .filter((event, index) => {
-      if (
-        (currentPage - 1) * PER_PAGE <= index &&
-        PER_PAGE * currentPage > index
-      ) {
-        return true;
-      }
-      return false;
-    });
+  ).filter((event, index) => {
+    if (
+      (currentPage - 1) * PER_PAGE <= index &&
+      PER_PAGE * currentPage > index
+    ) {
+      return true;
+    }
+    return false;
+  });
   const changeType = (evtType) => {
     setCurrentPage(1);
     setType(evtType);

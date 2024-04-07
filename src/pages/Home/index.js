@@ -131,6 +131,7 @@ const Page = () => {
           <h3>Notre derniére prestation</h3>
           {/* probleme daffichage avec les props */}
           {last && (
+            // ajout containers modal pour suivre l'architecture des autres modal de la galerie
             <Modal Content={<ModalEvent event={last} />}>
               {({ setIsOpened }) => (
                 <EventCard

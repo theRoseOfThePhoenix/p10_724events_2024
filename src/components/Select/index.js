@@ -17,10 +17,9 @@ const Select = ({
   const [value, setValue] = useState();
   const [collapsed, setCollapsed] = useState(true);
   const changeValue = (newValue) => {
-    onChange(newValue); // onchange permet de changer la valeur du type selectionner donc j'ai ajouté l'argument newValue en paramètre
+    onChange(newValue); // ajout l'argument newValue en paramètre de onchange qui permet de changer la valeur du type selectionner
     setValue(newValue);
-    setCollapsed(!collapsed);
-    // changement argument newValue en !collapsed correspondant bien au state,
+    setCollapsed(!collapsed); // changement argument newValue en !collapsed correspondant bien au state,
     // Permet de fermer et ouvrir le menu déroulant de select correctement
   };
   return (
