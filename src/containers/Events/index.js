@@ -11,14 +11,11 @@ import "./style.css";
 const PER_PAGE = 9;
 
 const EventList = () => {
-  // problème au niveau des event liste
   const { data, error } = useData();
   const [type, setType] = useState();
   const [currentPage, setCurrentPage] = useState(1);
 
-  // si le type n'est pas trouvé renvoi tous les events sinon tu renvoie les events qui correspont au type selectionné
-  // Modification du filtre avec en plus modification dans Select (bon argument dans fonction onChange)
-
+  // ajout de filter dans la ternner
   const filteredEvents = (
     (!type
       ? data?.events
